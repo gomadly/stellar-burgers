@@ -41,13 +41,5 @@ export const ProfileOrders = (): React.JSX.Element => {
     return <Preloader />;
   }
 
-  if (!orders.length) {
-    return (
-      <main style={{ textAlign: 'center', marginTop: '100px' }}>
-        <p className="text text_type_main-medium">У вас пока нет заказов</p>
-      </main>
-    );
-  }
-
   return <ProfileOrdersUI orders={orders} />;
 };

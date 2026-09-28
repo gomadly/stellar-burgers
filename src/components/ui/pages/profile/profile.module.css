@@ -1,9 +1,5 @@
 .container {
   composes: container from '../common.module.css';
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 60px;
 }
 
 .menu {

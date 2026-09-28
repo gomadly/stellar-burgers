@@ -19,11 +19,8 @@ export const AppHeaderUI = ({ userName }: TAppHeaderUIProps): React.JSX.Element 
             to="/"
             end
             className={({ isActive }) =>
-              `${styles.link} text text_type_main-default ml-2 mr-10 ${
-                isActive ? 'text_color_primary' : 'text_color_inactive'
-              }`
+              `${styles.link} ${isActive ? styles.link_active : ''}`
             }
-            style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}
           >
             <BurgerIcon type="primary" />
             <p>Конструктор</p>
@@ -32,11 +29,8 @@ export const AppHeaderUI = ({ userName }: TAppHeaderUIProps): React.JSX.Element 
           <NavLink
             to="/feed"
             className={({ isActive }) =>
-              `${styles.link} text text_type_main-default ml-2 ${
-                isActive ? 'text_color_primary' : 'text_color_inactive'
-              }`
+              `${styles.link} ${isActive ? styles.link_active : ''}`
             }
-            style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}
           >
             <ListIcon type="primary" />
             <p>Лента заказов</p>
@@ -44,7 +38,7 @@ export const AppHeaderUI = ({ userName }: TAppHeaderUIProps): React.JSX.Element 
         </div>
 
         <div className={styles.logo}>
-          <NavLink to="/" style={{ textDecoration: 'none' }}>
+          <NavLink to="/">
             <Logo className="" />
           </NavLink>
         </div>
@@ -53,11 +47,8 @@ export const AppHeaderUI = ({ userName }: TAppHeaderUIProps): React.JSX.Element 
           <NavLink
             to={userName ? '/profile' : '/login'}
             className={({ isActive }) =>
-              `${styles.link} text text_type_main-default ml-2 ${
-                isActive ? 'text_color_primary' : 'text_color_inactive'
-              }`
+              `${styles.link} ${styles.link_position_last} ${isActive ? styles.link_active : ''}`
             }
-            style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}
           >
             <ProfileIcon type="primary" />
             <p>{userName ?? 'Личный кабинет'}</p>
