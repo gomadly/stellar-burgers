@@ -39,21 +39,16 @@ test.describe('Интеграционные тесты конструктора 
   test('Открытие и закрытие модального окна ингредиента', async ({ page }) => {
     await page.waitForTimeout(3000);
 
-    const ingredientLink = page.locator('[data-testid="ingredients-content"] a').first();
-    await ingredientLink.click();
+    const firstIngredientCard = page.locator('li').first();
+    const ingredientName = (await firstIngredientCard.locator('p.text_type_main-default').textContent())?.trim();
 
-    await page.waitForTimeout(3000);
+    await firstIngredientCard.locator('a').click();
 
-    const modalTitle = page.locator('h2:has-text("Краторная булка"), h3:has-text("Краторная булка"), h2:has-text("Флюоресцентная"), h3:has-text("Флюоресцентная")').first();
-    await expect(modalTitle).toBeVisible({ timeout: 10000 });
-
-    const titleText = await modalTitle.textContent();
-    expect(titleText).toBeTruthy();
-    expect(titleText!.length).toBeGreaterThan(0);
+    await expect(page.locator('#modals').getByText(ingredientName!, { exact: true })).toBeVisible({ timeout: 10000 });
 
     await page.locator('button[aria-label="Закрыть"]').click();
-    await page.waitForTimeout(1000);
-    await expect(modalTitle).not.toBeVisible({ timeout: 5000 });
+
+    await expect(page.getByText('Детали ингредиента')).not.toBeVisible({ timeout: 5000 });
   });
 
   test('Оформление заказа', async ({ page }) => {
